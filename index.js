@@ -1,5 +1,4 @@
 'use strict';
-// Load modules
 
 const Hapi = require('hapi');
 const Vision = require('vision');
@@ -30,7 +29,7 @@ function getLatLong(body) {
     return new Promise((resolve, reject) => {
         const lat = _.map(body.issues, 'lat');
         const lng = _.map(body.issues, 'lng');
-        const lat_lng = { "lat": lat, "lng": lng }
+        const lat_lng = { lat, lng };
         resolve(lat_lng);
     });
 }
