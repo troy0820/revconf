@@ -1,0 +1,20 @@
+{
+    "name": "RevConf-talk",
+    "description": "My revconf talk",
+    "version": "0.0.1",
+    "repository": "git://github.com/revconf-talk",
+    "main": "index.js",
+    "engines": {
+        "node": ">=8.9.0"
+    },
+    "scripts": {
+        "start": "node index.js"
+    },
+    "dependencies": {
+        "lodash": "^4.17.10",
+        "vision": "^5.3.2",
+        "hapi": "17.4.0",
+        "ejs": "2.5.5"
+    },
+    "license": "MIT"
+}
