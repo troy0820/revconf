@@ -25,8 +25,15 @@ function getIssues(body) {
         resolve(issues);
     });
 }
-// Declare internals
 
+function getLatLong(body) {
+    return new Promise((resolve, reject) => {
+        const lat = _.map(body.issues, 'lat');
+        const lng = _.map(body.issues, 'lng');
+        const lat_lng = { "lat": lat, "lng": lng }
+        resolve(lat_lng);
+    });
+}
 const internals = {
     templatePath: 'basic'
 };
@@ -39,9 +46,11 @@ const rootHandler = async(request, h) => {
 
     const body = await getFixitStuff();
     const issues = await getIssues(body);
+    const lat_lng = await getLatLong(body);
     return h.view('index', {
         title: `SeeClickFixit API`,
         message: issues,
+        lat_lng: lat_lng,
         year: internals.thisYear
     });
 };
