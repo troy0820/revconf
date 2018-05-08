@@ -1,6 +1,8 @@
 {
   "extends": "cloudreach/es6",
-
+  "parserOptions": {
+   "ecmaVersion": 8
+  },
   "rules": {
     "strict": [2, "global"],
     "no-underscore-dangle": 0

@@ -2,7 +2,6 @@
 
 const Hapi = require('hapi');
 const Vision = require('vision');
-const Path = require('path');
 const Ejs = require('ejs');
 const request = require('request');
 const _ = require('lodash');
@@ -11,11 +10,11 @@ function getFixitStuff() {
     return new Promise((resolve, reject) => {
         request('https://seeclickfix.com/api/v2/issues?place_url=can_vancouver&per_page=10&page=1', (err, response, body) => {
             if (err) {
-                console.log("error:", err)
+                console.log('error:', err);
             }
             resolve(JSON.parse(body));
         });
-    })
+    });
 }
 
 function getIssues(body) {
@@ -29,8 +28,8 @@ function getLatLong(body) {
     return new Promise((resolve, reject) => {
         const lat = _.map(body.issues, 'lat');
         const lng = _.map(body.issues, 'lng');
-        const lat_lng = { lat, lng };
-        resolve(lat_lng);
+        const latLng = { lat, lng };
+        resolve(latLng);
     });
 }
 const internals = {
@@ -45,18 +44,19 @@ const rootHandler = async(request, h) => {
 
     const body = await getFixitStuff();
     const issues = await getIssues(body);
-    const lat_lng = await getLatLong(body);
+    const latLng = await getLatLong(body);
     return h.view('index', {
         title: `SeeClickFixit API`,
         message: issues,
-        lat_lng: lat_lng,
+        latLng: latLng,
         year: internals.thisYear
     });
 };
 
 const healthHandler = async(req, h) => {
     return h.response(200);
-}
+};
+
 internals.main = async() => {
 
     const server = Hapi.Server({ port: 8080 });
@@ -72,7 +72,7 @@ internals.main = async() => {
     server.route({ method: 'GET', path: '/', handler: rootHandler });
     server.route({ method: 'GET', path: '/health', handler: healthHandler });
     await server.start();
-    console.log('Server is running at ' + server.info.uri);
+    console.log(`Server is running at ${server.info.uri}`);
 };
 
 
