@@ -8,7 +8,8 @@
         "node": ">=8.9.0"
     },
     "scripts": {
-        "start": "node index.js"
+        "start": "node index.js",
+        "lint": "eslint . --ext .js"
     },
     "dependencies": {
         "lodash": "^4.17.10",
@@ -16,5 +17,9 @@
         "hapi": "17.4.0",
         "ejs": "2.5.5"
     },
-    "license": "MIT"
+    "license": "MIT",
+    "devDependencies": {
+        "eslint": "^4.19.1",
+        "eslint-config-cloudreach": "^1.0.0"
+    }
 }
