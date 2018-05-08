@@ -26,8 +26,16 @@
             <li>Latitude:
                 <%= latLng.lat[i] %>
             </li>
-            <li>Longitude
+            <li>Longitude:
                 <%= latLng.lng[i] %>
+            </li>
+            <li>Image:</li>
+            <li>
+                <% if(images[i] != null) { %>
+                    <img src="<%= images[i] %>">
+                    <% } else { %>
+                        <img src="https://mindd.org/wp-content/uploads/2016/05/blogpost-placeholder-100x100.png">
+                        <% } %>
             </li>
             <hr/>
             <% }) %>

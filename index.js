@@ -32,6 +32,14 @@ function getLatLong(body) {
         resolve(latLng);
     });
 }
+
+function getImages(body) {
+    return new Promise((resolve, reject) => {
+        const images = _.map(body.issues, 'media.image_square_100x100');
+        resolve(images);
+    });
+}
+
 const internals = {
     templatePath: 'basic'
 };
@@ -45,10 +53,12 @@ const rootHandler = async(request, h) => {
     const body = await getFixitStuff();
     const issues = await getIssues(body);
     const latLng = await getLatLong(body);
+    const images = await getImages(body);
     return h.view('index', {
         title: `SeeClickFixit API`,
         message: issues,
         latLng: latLng,
+        images: images,
         year: internals.thisYear
     });
 };
