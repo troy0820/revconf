@@ -1,7 +1,0 @@
-version: '3.3'
-
-services:
-  revconf:
-    image: troy0820/revconf:v1.0.0
-    ports:
-     - 3000
