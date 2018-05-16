@@ -64,6 +64,7 @@ const rootHandler = async(request, h) => {
 };
 
 const healthHandler = async(req, h) => {
+  console.log("GOOD")
     return h.response(200);
 };
 
